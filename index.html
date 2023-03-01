@@ -53,13 +53,12 @@
                 <a href="#contact" class="nav-link">Contact</a>
               </li>
               <li class="nav-item">
-                <a
-                  download="fw19_0637-Sama-Sarun-Reddy-Resume"
-                  href="./assets/fw19_0637-Sama-Sarun-Reddy-Resume.pdf"
-                  class="nav-link"
-                  target="_blank"
-                  >Resume</a
+                <button
+                  style="border: none; background-color: white; margin-top: 10%"
+                  onclick="downloadFileAndOpenURL()"
                 >
+                  Resume
+                </button>
               </li>
               <li>
                 <button id="theme">
@@ -179,13 +178,12 @@
               start it from scratch or adding some customized features and
               functionality for outdated websites to make them shine again.
             </p>
-            <a
-              download
-              href="./assets/fw19_0637-Sama-Sarun-Reddy-Resume.pdf"
-              class="nav-link"
-              target="_blank"
-              >Resume</a
+            <button
+              style="border: none; background-color: white; margin-top: 10%"
+              onclick="downloadFileAndOpenURL()"
             >
+              Resume
+            </button>
           </section>
         </div>
       </div>
@@ -1059,5 +1057,25 @@
     <!-- ==== Dark/Light mode button === -->
 
     
+    <script>
+      function downloadFileAndOpenURL() {
+        var localFilePath = "./assets/fw19_0637-Sama-Sarun-Reddy-Resume.pdf";
+        var fileName = "fw19_0637-Sama-Sarun-Reddy-Resume.pdf";
+        var url =
+          "https://drive.google.com/file/d/1R-BOKsF4CsyLVUyb8PXpB6VpxEd6o2S-/view?usp=sharing";
+
+        // Download the local file
+        var link = document.createElement("a");
+        link.setAttribute("href", localFilePath);
+        link.setAttribute("download", fileName);
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Open the URL
+        window.open(url);
+      }
+    </script>
   </body>
 </html>
