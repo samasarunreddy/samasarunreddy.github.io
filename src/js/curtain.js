@@ -1,10 +1,10 @@
 import {
   Curtains,
   Plane,
-  Vec2
-} from '../../node_modules/curtainsjs/src/index.mjs';
+  Vec2,
+} from "../../node_modules/curtainsjs/src/index.mjs";
 
-window.addEventListener('load', () => {
+window.addEventListener("load", () => {
   // track the mouse positions to send it to the shaders
   const mousePosition = new Vec2();
   // we will keep track of the last position in order to calculate the movement strength/delta
@@ -12,21 +12,21 @@ window.addEventListener('load', () => {
 
   const deltas = {
     max: 0,
-    applied: 0
+    applied: 0,
   };
 
   // set up our WebGL context and append the canvas to our wrapper
   const curtains = new Curtains({
-    container: 'canvas',
+    container: "canvas",
     watchScroll: false, // no need to listen for the scroll in this example
-    pixelRatio: Math.min(1.5, window.devicePixelRatio) // limit pixel ratio for performance
+    pixelRatio: Math.min(1.5, window.devicePixelRatio), // limit pixel ratio for performance
   });
 
   // handling errors
   curtains
     .onError(() => {
       // we will add a class to the document body to display original images
-      document.body.classList.add('no-curtains');
+      document.body.classList.add("no-curtains");
     })
     .onContextLost(() => {
       // on context lost, try to restore the context
@@ -34,7 +34,7 @@ window.addEventListener('load', () => {
     });
 
   // get our plane element
-  const planeElements = document.getElementsByClassName('curtain');
+  const planeElements = document.getElementsByClassName("curtain");
 
   const vs = `
           precision mediump float;
@@ -101,29 +101,29 @@ window.addEventListener('load', () => {
     uniforms: {
       resolution: {
         // resolution of our plane
-        name: 'uResolution',
-        type: '2f', // notice this is an length 2 array of floats
-        value: [planeElements[0].clientWidth, planeElements[0].clientHeight]
+        name: "uResolution",
+        type: "2f", // notice this is an length 2 array of floats
+        value: [planeElements[0].clientWidth, planeElements[0].clientHeight],
       },
       time: {
         // time uniform that will be updated at each draw call
-        name: 'uTime',
-        type: '1f',
-        value: 0
+        name: "uTime",
+        type: "1f",
+        value: 0,
       },
       mousePosition: {
         // our mouse position
-        name: 'uMousePosition',
-        type: '2f', // again an array of floats
-        value: mousePosition
+        name: "uMousePosition",
+        type: "2f", // again an array of floats
+        value: mousePosition,
       },
       mouseMoveStrength: {
         // the mouse move strength
-        name: 'uMouseMoveStrength',
-        type: '1f',
-        value: 0
-      }
-    }
+        name: "uMouseMoveStrength",
+        type: "1f",
+        value: 0,
+      },
+    },
   };
 
   // create our plane
@@ -139,19 +139,19 @@ window.addEventListener('load', () => {
       deltas.max = 2;
 
       // now that our plane is ready we can listen to mouse move event
-      const wrapper = document.getElementById('img-wrapper');
+      const wrapper = document.getElementById("img-wrapper");
 
-      wrapper.addEventListener('mousemove', e => {
+      wrapper.addEventListener("mousemove", (e) => {
         handleMovement(e, simplePlane);
       });
 
       wrapper.addEventListener(
-        'touchmove',
-        e => {
+        "touchmove",
+        (e) => {
           handleMovement(e, simplePlane);
         },
         {
-          passive: true
+          passive: true,
         }
       );
     })
@@ -170,12 +170,12 @@ window.addEventListener('load', () => {
       const planeBoundingRect = simplePlane.getBoundingRect();
       simplePlane.uniforms.resolution.value = [
         planeBoundingRect.width,
-        planeBoundingRect.height
+        planeBoundingRect.height,
       ];
     })
     .onError(() => {
       // we will add a class to the document body to display original images
-      document.body.classList.add('no-curtains');
+      document.body.classList.add("no-curtains");
     });
 
   // handle the mouse move event
