@@ -10,7 +10,7 @@ module.exports = {
     },
   },
   assets: {
-    include: "src/img/docs/fw19_0637-Sama-Sarun-Reddy-Resume.pdf",
+    include: "./src/img/docs/fw19_0637-Sama-Sarun-Reddy-Resume.pdf",
     // set the output directory to dist/assets/pdf
     outputDir: "assets/pdf",
   },
