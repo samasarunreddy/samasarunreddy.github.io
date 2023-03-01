@@ -4,6 +4,7 @@
   "description": "customizable portfolio template for developers",
   "main": "index.js",
   "scripts": {
+    "deploy": "gh-pages -d dist",
     "dev": "vite src",
     "build": "vite build",
     "serve": "vite preview"
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^4.1.3",
+    "gh-pages": "^5.0.0",
     "postcss-load-config": "^3.1.4"
   }
 }
